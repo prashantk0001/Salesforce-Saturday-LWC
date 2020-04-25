@@ -1,0 +1,14 @@
+<template>
+    <div style="margin:100px">
+    <template if:true={isNameSFDC}>
+        <template if:true={productHasSalesCloud}>
+            Finally!
+        </template>
+    </template>
+    </div>
+    <div style="margin:100px">
+        <template if:true={isNameSFDCAndHasSalesCloud}>
+            Finally v2!
+        </template>
+    </div>
+</template>

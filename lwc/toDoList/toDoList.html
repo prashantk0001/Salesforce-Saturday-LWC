@@ -1,0 +1,91 @@
+<template>
+    <article class="slds-card" style="margin-top: 100px; margin-left: 200px; margin-right: 200px;">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-task" title="task">
+                        <span class="slds-assistive-text">To Do List</span>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title" style="text-align: center;padding-top:10px; padding: 10px;">
+                        <span>{userInformation.Name}'s Todo List</span>
+                    </h2>
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-illustration slds-illustration_small">
+                <div class="slds-text-longform" style="padding-bottom: 40px;">
+
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Todo">Todo</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Created on">Created on</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Action" style="text-align: center;">Action</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" colspan="2">
+                                    <div class="slds-truncate ">
+                                        <span class="todospan slds-input" style="border: #b6b6da 1px solid;"
+                                            contenteditable="true" data-placeholder="Enter new Todo">
+                                            Enter new Todo
+                                        </span>
+                                    </div>
+                                </th>
+                                <td width="15%" style="text-align: center;">
+                                    <div class="slds-truncate" title="Add">
+                                        <button class="slds-button slds-button_brand" onclick={addToDo}>Add</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr></tr>
+                            <template if:false={todoList}>
+                                <tr>
+                                    <td colspan="3">
+                                        Loading Todos..
+                                    </td>
+                                </tr>
+
+                            </template>
+                            <template if:true={todoList}>
+                                <template for:each={todoList} for:item="todo">
+
+                                    <tr key={todo.id} class="slds-hint-parent">
+                                        <th scope="row" width="40%">
+                                            <div class="slds-truncate" title={todo.text}>
+                                                {todo.Name}
+                                            </div>
+                                        </th>
+                                        <td>
+                                            <div class="slds-truncate" title={todo.createdon}>{todo.CreatedDate}</div>
+                                        </td>
+                                        <td width="15%" style="text-align: center;">
+                                            <div class="slds-truncate" title="Remove">
+                                                <button class="slds-button" data-id={todo.Id}
+                                                    onclick={copyTodo}>Copy</button>
+
+                                                <button class="slds-button" data-id={todo.Id}
+                                                    onclick={removeToDo}>X</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </template>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</template>
